@@ -43,7 +43,7 @@ class ConsoleServiceProvider extends ServiceProvider
                 ->after(function () use ($event, $task) {
                     Executed::dispatch($task, $event->start);
                 })
-                ->sendOutputTo(storage_path($task->getMutexName()));
+                ->sendOutputTo(config('totem.storage_path').DIRECTORY_SEPARATOR.$task->getMutexName());
             if ($task->dont_overlap) {
                 $event->withoutOverlapping();
             }

@@ -195,9 +195,9 @@ class EloquentTaskRepository implements TaskInterface
         try {
             Artisan::call($task->command, $task->compileParameters());
 
-            file_put_contents(storage_path($task->getMutexName()), Artisan::output());
+            file_put_contents(config('totem.storage_path').DIRECTORY_SEPARATOR.$task->getMutexName(), Artisan::output());
         } catch (\Exception $e) {
-            file_put_contents(storage_path($task->getMutexName()), $e->getMessage());
+            file_put_contents(config('totem.storage_path').DIRECTORY_SEPARATOR.$task->getMutexName(), $e->getMessage());
         }
 
         Executed::dispatch($task, $start);

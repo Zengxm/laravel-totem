@@ -223,6 +223,7 @@ return [
         'middleware' => env('TOTEM_API_MIDDLEWARE', 'api'),
     ],
     'table_prefix' => env('TOTEM_TABLE_PREFIX', ''),
+    'storage_path' => env('TOTEM_STORAGE_PATH', '/data/storage'),
     'artisan' => [
         'command_filter' => [],
         'whitelist' => true,

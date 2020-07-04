@@ -31,10 +31,10 @@ class ExportTasksController extends Controller
      */
     public function index()
     {
-        File::put(storage_path('tasks.json'), $this->tasks->findAll()->toJson());
+        File::put(config('totem.storage_path').DIRECTORY_SEPARATOR.'tasks.json', $this->tasks->findAll()->toJson());
 
         return response()
-            ->download(storage_path('tasks.json'), 'tasks.json')
+            ->download(config('totem.storage_path').DIRECTORY_SEPARATOR.'tasks.json', 'tasks.json')
             ->deleteFileAfterSend(true);
     }
 }
