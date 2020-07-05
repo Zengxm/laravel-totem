@@ -34,7 +34,7 @@ class AddIndexesForTasks extends TotemMigration
             ->table(TOTEM_TABLE_PREFIX.'tasks', function (Blueprint $table) {
                 $table->index('is_active', 'tasks_is_active_idx');
                 $table->index('dont_overlap', 'tasks_dont_overlap_idx');
-                $table->index('run_in_maintenance', 'tasks_run_in_maintenance_idx');
+                $table->index('run_in_background', 'tasks_run_in_background_idx');
                 $table->index('run_on_one_server', 'tasks_run_on_one_server_idx');
                 $table->index('auto_cleanup_num', 'tasks_auto_cleanup_num_idx');
                 $table->index('auto_cleanup_type', 'tasks_auto_cleanup_type_idx');
@@ -72,7 +72,7 @@ class AddIndexesForTasks extends TotemMigration
             ->table(TOTEM_TABLE_PREFIX.'tasks', function (Blueprint $table) {
                 $table->dropIndex('tasks_is_active_idx');
                 $table->dropIndex('tasks_dont_overlap_idx');
-                $table->dropIndex('tasks_run_in_maintenance_idx');
+                $table->dropIndex('tasks_run_in_background_idx');
                 $table->dropIndex('tasks_run_on_one_server_idx');
                 $table->dropIndex('tasks_auto_cleanup_num_idx');
                 $table->dropIndex('tasks_auto_cleanup_type_idx');

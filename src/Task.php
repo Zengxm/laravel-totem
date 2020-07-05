@@ -27,7 +27,7 @@ class Task extends TotemModel
         'timezone',
         'is_active',
         'dont_overlap',
-        'run_in_maintenance',
+        'run_in_background',
         'notification_email_address',
         'notification_phone_number',
         'notification_slack_webhook',

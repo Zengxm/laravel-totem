@@ -19,15 +19,15 @@ class Executed extends BroadcastingEvent
 
         $time_elapsed_secs = microtime(true) - $started;
 
-        if (file_exists(config('totem.storage_path').DIRECTORY_SEPARATOR.$task->getMutexName())) {
-            $output = file_get_contents(config('totem.storage_path').DIRECTORY_SEPARATOR.$task->getMutexName());
+        if (file_exists(config('totem.log_path').DIRECTORY_SEPARATOR.$task->getMutexName())) {
+            $output = file_get_contents(config('totem.log_path').DIRECTORY_SEPARATOR.$task->getMutexName());
 
             $task->results()->create([
                 'duration'  => $time_elapsed_secs * 1000,
                 'result'    => $output,
             ]);
 
-            unlink(config('totem.storage_path').DIRECTORY_SEPARATOR.$task->getMutexName());
+            unlink(config('totem.log_path').DIRECTORY_SEPARATOR.$task->getMutexName());
 
             $task->notify(new TaskCompleted($output));
             $task->autoCleanup();

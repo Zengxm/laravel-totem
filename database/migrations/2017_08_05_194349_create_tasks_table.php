@@ -23,7 +23,7 @@ class CreateTasksTable extends TotemMigration
                 $table->string('timezone')->default('UTC');
                 $table->boolean('is_active')->default(true);
                 $table->boolean('dont_overlap')->default(false);
-                $table->boolean('run_in_maintenance')->default(false);
+                $table->boolean('run_in_background')->default(false);
                 $table->string('notification_email_address')->nullable();
                 $table->timestamps();
             });

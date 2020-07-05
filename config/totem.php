@@ -224,6 +224,7 @@ return [
     ],
     'table_prefix' => env('TOTEM_TABLE_PREFIX', ''),
     'storage_path' => env('TOTEM_STORAGE_PATH', app()->storagePath()),
+    'log_path' => env('TOTEM_LOG_PATH', app()->storagePath().'/logs'),
     'artisan' => [
         'command_filter' => [],
         'whitelist' => true,

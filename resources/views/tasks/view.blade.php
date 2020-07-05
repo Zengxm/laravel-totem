@@ -66,9 +66,9 @@
                 <span class="uk-float-left">Doesn't Overlap with another instance of this task</span>
             </li>
         @endif
-        @if($task->run_in_maintenance)
+        @if($task->run_in_background)
             <li>
-                <span class="uk-float-left">Runs in maintenance mode</span>
+                <span class="uk-float-left">Runs in background mode</span>
             </li>
         @endif
         @if($task->run_on_one_server)

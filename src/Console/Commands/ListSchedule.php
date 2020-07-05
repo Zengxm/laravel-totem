@@ -58,13 +58,13 @@ class ListSchedule extends Command
                     'upcoming'      => $this->upcoming($event),
                     'timezone'      => $event->timezone ?: config('app.timezone'),
                     'overlaps'      => $event->withoutOverlapping ? 'No' : 'Yes',
-                    'maintenance'   => $event->evenInMaintenanceMode ? 'Yes' : 'No',
+                    'background'   => $event->runInBackground ? 'Yes' : 'No',
                     'one_server'   => $event->onOneServer ? 'Yes' : 'No',
                 ];
             });
 
             $this->table(
-                ['Description', 'Command', 'Schedule', 'Upcoming', 'Timezone', 'Overlaps?', 'In Maintenance?', 'One Server?'],
+                ['Description', 'Command', 'Schedule', 'Upcoming', 'Timezone', 'Overlaps?', 'In Background?', 'One Server?'],
                 $events
             );
         } else {

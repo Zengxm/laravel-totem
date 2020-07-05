@@ -188,7 +188,7 @@
             <div class="uk-form-label">Miscellaneous Options</div>
             <ul class="uk-list uk-padding-remove">
                 <li class="uk-text-meta">Decide whether multiple instances of same task should overlap each other or not.</li>
-                <li class="uk-text-meta">Decide whether the task should be executed while the app is in maintenance mode.</li>
+                <li class="uk-text-meta">Decide whether the task should be executed while the app is in background mode.</li>
                 <li class="uk-text-meta">Decide whether the task should be executed on a single server.</li>
             </ul>
         </div>
@@ -201,9 +201,9 @@
 
             <div class="uk-margin">
                 <label class="uk-margin">
-                    <input type="hidden" name="run_in_maintenance" id="run_in_maintenance" value="0" {{old('run_in_maintenance', $task->run_in_maintenance) ? '' : 'checked'}}>
-                    <input type="checkbox" name="run_in_maintenance" id="run_in_maintenance" value="1" {{old('run_in_maintenance', $task->run_in_maintenance) ? 'checked' : ''}}>
-                    Run in maintenance mode
+                    <input type="hidden" name="run_in_background" id="run_in_background" value="0" {{old('run_in_background', $task->run_in_background) ? '' : 'checked'}}>
+                    <input type="checkbox" name="run_in_background" id="run_in_background" value="1" {{old('run_in_background', $task->run_in_background) ? 'checked' : ''}}>
+                    Run in background mode
                 </label>
             </div>
             <div class="uk-margin">
