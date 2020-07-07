@@ -4,6 +4,7 @@ namespace Studio\Totem\Providers;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Log;
 use Studio\Totem\Events\Executed;
 use Studio\Totem\Events\Executing;
 
@@ -16,12 +17,11 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if ($this->app->env != 'production') {
-            return;
+        if (config('totem.console_enbaled')) {
+            $this->app->resolving(Schedule::class, function ($schedule) {
+                $this->schedule($schedule);
+            });
         }
-        $this->app->resolving(Schedule::class, function ($schedule) {
-            $this->schedule($schedule);
-        });
     }
 
     /**
@@ -45,6 +45,9 @@ class ConsoleServiceProvider extends ServiceProvider
                 })
                 ->after(function () use ($event, $task) {
                     Executed::dispatch($task, $event->start);
+                })
+                ->onFailure(function () use ($event, $task) {
+                    Log::channel(config('totem.log_channel'))->error($event->command.'--'.'执行失败', $task->compileParameters(true));
                 })
                 ->sendOutputTo(config('totem.log_path').DIRECTORY_SEPARATOR.$task->getMutexName());
             if ($task->dont_overlap) {

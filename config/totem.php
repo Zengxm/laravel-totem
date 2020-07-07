@@ -222,9 +222,11 @@ return [
     'api' => [
         'middleware' => env('TOTEM_API_MIDDLEWARE', 'api'),
     ],
+    'console_enbaled' => env('TOTEM_CONSOLE_ENBALED', false),
     'table_prefix' => env('TOTEM_TABLE_PREFIX', ''),
     'storage_path' => env('TOTEM_STORAGE_PATH', app()->storagePath()),
     'log_path' => env('TOTEM_LOG_PATH', app()->storagePath().'/logs'),
+    'log_channel' => env('TOTEM_LOG_CHANNEL', config('logging.default')),
     'artisan' => [
         'command_filter' => [],
         'whitelist' => true,
