@@ -47,14 +47,15 @@ class ConsoleServiceProvider extends ServiceProvider
                     Executed::dispatch($task, $event->start);
                 })
                 ->onFailure(function () use ($event, $task) {
-                    Log::channel(config('totem.log_channel'))->error($event->command.'--'.'执行失败', $task->compileParameters(true));
+                    Log::channel(config('totem.log_channel'))->error('['.$event->command.'] failed', $task->compileParameters(true));
                 })
                 ->sendOutputTo(config('totem.log_path').DIRECTORY_SEPARATOR.$task->getMutexName());
             if ($task->dont_overlap) {
                 $event->withoutOverlapping();
             }
             if ($task->run_in_background) {
-                $event->runInBackground();
+                // somestime unstable!
+                // $event->runInBackground();
             }
             if ($task->run_on_one_server && in_array(config('cache.default'), ['memcached', 'redis'])) {
                 $event->onOneServer();
